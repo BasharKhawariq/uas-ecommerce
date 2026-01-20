@@ -1,6 +1,6 @@
 <h2>Tambah Produk</h2>
 
-<form action="/admin/products" method="POST">
+<form action="/admin/products" method="POST" enctype="multipart/form-data">
     @csrf
 
     Nama:<br>
@@ -25,5 +25,8 @@
     Deskripsi:<br>
     <textarea name="description"></textarea><br><br>
 
+    Gambar Produk:<br>
+    <input type="file" name="image"><br><br>
+    
     <button type="submit">Simpan</button>
 </form>

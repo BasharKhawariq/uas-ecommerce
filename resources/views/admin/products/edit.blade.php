@@ -28,5 +28,12 @@
     Deskripsi:<br>
     <textarea name="description">{{ $product->description }}</textarea><br><br>
 
+    Foto Baru:<br>
+    <input type="file" name="image"><br><br>
+
+    @if($product->image)
+    <img src="{{ asset('storage/'.$product->image) }}" width="100">
+    @endif
+
     <button type="submit">Update</button>
 </form>

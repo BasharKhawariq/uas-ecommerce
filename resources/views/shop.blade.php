@@ -12,6 +12,7 @@
     <tr>
         <th>Produk</th>
         <th>Harga</th>
+        <th>Gambar</th>
         <th>Stok</th>
         <th>Beli</th>
     </tr>
@@ -19,6 +20,11 @@
     <tr>
         <td>{{ $p->name }}</td>
         <td>{{ $p->price }}</td>
+        <td>
+            @if($p->image)
+            <img src="{{ asset('storage/'.$p->image) }}" width="100">
+            @endif
+        </td>
         <td>{{ $p->stock }}</td>
         <td>
             <form action="/checkout" method="POST">

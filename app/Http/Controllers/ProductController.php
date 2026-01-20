@@ -34,7 +34,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        Product::create($data);
         return redirect('/admin/products')->with('success', 'Produk berhasil ditambahkan');
     }
 
@@ -62,9 +68,16 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $product->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($data);
         return redirect('/admin/products')->with('success', 'Produk berhasil diupdate');
     }
+
 
     /**
      * Remove the specified resource from storage.
