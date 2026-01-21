@@ -35,15 +35,15 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/shop', [TransactionController::class, 'index']);
-    Route::post('/checkout', [TransactionController::class, 'store']);
+    Route::get('/shop', [TransactionController::class, 'index'])->name('shop');
+    Route::post('/checkout', [TransactionController::class, 'store'])->name('checkout');
 });
 
 Route::middleware(['auth', 'isadmin'])->get('/admin/statistics', [StatisticController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/my-transactions', [TransactionController::class, 'myTransactions']);
-    Route::get('/my-transactions/{id}', [TransactionController::class, 'detail']);
+    Route::get('/my-transactions', [TransactionController::class, 'myTransactions'])->name('my-transactions');
+    Route::get('/my-transactions/{id}', [TransactionController::class, 'detail'])->name('my-transactions.detail');
 });
 
 Route::middleware(['auth','isadmin'])->get('/admin/dashboard', [AdminDashboardController::class,'index']);

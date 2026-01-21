@@ -15,8 +15,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        <div class="min-h-screen bg-gray-100 flex flex-col">
+            <!-- Navbar -->
+            @include('partials.navbar')
 
             <!-- Page Heading -->
             @isset($header)
@@ -28,9 +29,16 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="flex-grow">
+                @if(isset($slot))
+                    {{ $slot }}
+                @else
+                    @yield('content')
+                @endif
             </main>
+
+            <!-- Footer -->
+            @include('partials.footer')
         </div>
     </body>
 </html>
